@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://lg7xsl5feri1"]
+
+[ext_resource type="Material" uid="uid://vld5xxh3wqjw" path="res://water/water.material" id="1_6ekjw"]
+[ext_resource type="Script" uid="uid://chdefngcwmj3g" path="res://water/rings.gd" id="2_ira2j"]
+[ext_resource type="PackedScene" uid="uid://1tytr1kwbeih" path="res://water/ring.tscn" id="3_cxa54"]
+[ext_resource type="PackedScene" uid="uid://cbleu4fn080tq" path="res://water/underwater.tscn" id="4_o7pku"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gq8jy"]
+size = Vector2(100, 100)
+
+[node name="Water" type="Node3D" node_paths=PackedStringArray("container")]
+script = ExtResource("2_ira2j")
+container = NodePath("Rings")
+ring_template = ExtResource("3_cxa54")
+
+[node name="Middle" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_6ekjw")
+mesh = SubResource("PlaneMesh_gq8jy")
+
+[node name="Rings" type="Node3D" parent="."]
+
+[node name="Underwater" parent="." instance=ExtResource("4_o7pku")]

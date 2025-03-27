@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://cscx12tyeucpd"
+path="res://.godot/imported/effect.glsl-b6c278e65950898dd4430ada3ba27cb4.res"
+
+[deps]
+
+source_file="res://depth_capture/effect.glsl"
+dest_files=["res://.godot/imported/effect.glsl-b6c278e65950898dd4430ada3ba27cb4.res"]
+
+[params]
+

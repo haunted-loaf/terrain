@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://1tytr1kwbeih"]
+
+[ext_resource type="Material" uid="uid://vld5xxh3wqjw" path="res://water/water.material" id="1_6nvvc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wvnvl"]
+size = Vector2(100, 100)
+subdivide_width = 64
+subdivide_depth = 64
+
+[node name="Ring" type="Node3D"]
+
+[node name="WaterN" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")
+
+[node name="WaterNE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")
+
+[node name="WaterE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")
+
+[node name="WaterSE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")
+
+[node name="WaterS" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")
+
+[node name="WaterSW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 100)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")
+
+[node name="WaterW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")
+
+[node name="WaterNW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
+material_override = ExtResource("1_6nvvc")
+mesh = SubResource("PlaneMesh_wvnvl")
+skeleton = NodePath("../../..")

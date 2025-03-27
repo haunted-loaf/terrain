@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://i7ed2qskxibe"]
+
+[ext_resource type="Script" uid="uid://i2x4xrpsae1s" path="res://camera/camera_controller.gd" id="1_lw1ob"]
+
+[node name="Camera" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+current = true
+far = 1e+12
+script = ExtResource("1_lw1ob")
+dolly_max = 11.0
+dolly_base = 100.0

@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxe4312t7a7cw"]
+
+[ext_resource type="Texture2D" uid="uid://njffmxosrkxe" path="res://skies/sunflowers_puresky_4k.exr" id="1_jsed3"]
+[ext_resource type="Script" uid="uid://iv3fcom6regq" path="res://scripts/set_precise_density.gd" id="2_p57ef"]
+[ext_resource type="Script" uid="uid://4vehwvxrt22g" path="res://scripts/sun.gd" id="2_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cp75b5mlhoodq" path="res://terrain/scenes/world.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://i7ed2qskxibe" path="res://camera/camera.tscn" id="10_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://csak8ydo003uw" path="res://character/scenes/character.tscn" id="11_kvpfn"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kvuet"]
+panorama = ExtResource("1_jsed3")
+
+[sub_resource type="Sky" id="Sky_sknbc"]
+sky_material = SubResource("PanoramaSkyMaterial_kvuet")
+
+[sub_resource type="Environment" id="Environment_25jui"]
+background_mode = 2
+background_color = Color(0.455469, 0.421539, 0.427002, 1)
+sky = SubResource("Sky_sknbc")
+sky_rotation = Vector3(0, 3.54651, 0)
+ambient_light_source = 3
+ssao_intensity = 16.0
+fog_enabled = true
+fog_light_color = Color(0.211139, 0.396407, 0.580469, 1)
+fog_density = 1e-05
+fog_sky_affect = 0.0
+fog_depth_curve = 2.0
+fog_depth_end = 100000.0
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_p57ef"]
+
+[node name="Root" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_25jui")
+script = ExtResource("2_p57ef")
+rcpt = 100000.0
+
+[node name="Sun" type="DirectionalLight3D" parent="WorldEnvironment"]
+unique_name_in_owner = true
+transform = Transform3D(-0.976643, -0.0613091, 0.205938, 0.0452479, 0.878255, 0.476047, -0.210052, 0.474246, -0.854967, 0, 39.642, 0)
+shadow_enabled = true
+directional_shadow_split_1 = 0.000244141
+directional_shadow_split_2 = 0.00390625
+directional_shadow_split_3 = 0.0625
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 8000.0
+script = ExtResource("2_u5sy4")
+exponent = 16.0
+
+[node name="World" parent="." instance=ExtResource("3_lbhrr")]
+
+[node name="Terrain" parent="World" index="0"]
+resolution = 20
+
+[node name="Grass" parent="World" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -65)
+count = 32
+texture = SubResource("Texture2DRD_p57ef")
+
+[node name="Camera3D" parent="World/Grass/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 6.12323e-17, 1, 0, -1, 6.12323e-17, 23, 100, -65)
+
+[node name="MeshInstance3D" parent="World/Grass" index="1"]
+visible = false
+
+[node name="StaticBody3D" parent="World" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -65)
+visible = false
+texture = RID(1505690979937205)
+
+[node name="Camera3D" parent="World/StaticBody3D/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 6.12323e-17, 1, 0, -1, 6.12323e-17, 23, 100, -65)
+
+[node name="Marker3D" parent="World" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1289, 7.81385, -64.8185)
+
+[node name="Camera" parent="." node_paths=PackedStringArray("focus") instance=ExtResource("10_kvpfn")]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, -420.057, 449323, -844.926)
+focus = NodePath("../Character")
+pitch = -20.0
+dolly_base = 2.0
+
+[node name="Character" parent="." instance=ExtResource("11_kvpfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1289, 7.81385, -64.8185)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Character"]
+remote_path = NodePath("../../World/Marker3D")
+update_rotation = false
+update_scale = false
+
+[editable path="World"]

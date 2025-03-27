@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbleu4fn080tq"]
+
+[ext_resource type="Material" uid="uid://b82ajrn3nqdep" path="res://water/underwater.material" id="1_54fgh"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_54fgh"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="Underwater" type="MeshInstance3D"]
+sorting_offset = -1e+06
+material_override = ExtResource("1_54fgh")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_54fgh")
+skeleton = NodePath("../..")
